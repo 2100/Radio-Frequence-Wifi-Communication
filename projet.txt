@@ -1,0 +1,36 @@
+start :
+1- init board hal 
+2- basicRF Cfg_t structure
+3-basicRfInt();
+
+trans : 
+1- create buffer <==> 103 byte
+2- basicRfSendPacket() ;
+
+Rec :
+1- basicRfPacketIsReady();
+return raw signal strength indicator , in dbm (decibels milliwats)
+2- basicRfReceive();
+
+------------------
+basicRfReceiveOn(); => make receiver on 
+basicRfReceiveOff(); => make receiver off all the time 
+
+-------------------------------------------------------------------------
+
+1- header files 
+basic_rf.h
+basic_rf_security.h //t2gilllll
+
+algorithms : 
+typedef struct {
+uint16 myaddress ; => //represent source addres ;
+uint16 panId;
+uint8 channel;
+uint8 ackRequest;
+#ifdef SECURITY_CCM
+uint8* securityKey;
+uint8* securityNonce;
+#endif
+}
+basicRfCfg_t;
